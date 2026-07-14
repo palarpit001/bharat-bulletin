@@ -1,7 +1,6 @@
-// app/search/page.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
@@ -21,7 +20,8 @@ interface News {
   date: string;
 }
 
-export default function SearchPage() {
+// AAPKA PURANA POORA LOGIC AND UI BINA KISI CHANGE KE
+function SearchContent() {
   const searchParams = useSearchParams();
   const q = (searchParams.get("q") || "").toLowerCase();
 
@@ -102,5 +102,20 @@ export default function SearchPage() {
         </div>
       )}
     </main>
+  );
+}
+
+// NEXT.JS KI REQUIREMENT KE LIYE SAFETY WRAPPER
+export default function SearchPage() {
+  return (
+    <Suspense 
+      fallback={
+        <main className="max-w-7xl mx-auto p-8">
+          <h1 className="text-3xl font-bold">Loading Search...</h1>
+        </main>
+      }
+    >
+      <SearchContent />
+    </Suspense>
   );
 }
