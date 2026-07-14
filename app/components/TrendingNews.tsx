@@ -30,7 +30,7 @@ const data = snapshot.docs
   }))
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-  .filter((item: unknown) => item.trending === true)
+  .filter((item: any) => (item as Record<string, any>).trending === true)
   .slice(0, 5) as News[];
 
 setNews(data);
