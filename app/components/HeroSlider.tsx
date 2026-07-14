@@ -62,7 +62,8 @@ setNews(data);
           alt={article.title}
           className="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-105"
         />
-
+/* IS LINE KO DHAYAN SE REPLACE KAREIN (Humne isme z-[100] aur isolate add kiya hai) */
+    <header className="sticky top-0 z-[100] isolate bg-white/75 dark:bg-zinc-900/75 text-black dark:text-white backdrop-blur-md border-b border-gray-200/50 dark:border-zinc-800/50 shadow-sm transition-all duration-300"></header>
         <div className="absolute inset-0 bg-black/50 flex items-end">
           <div className="p-8 text-white">
             <span className="bg-red-600 px-3 py-1 rounded-full text-sm">
