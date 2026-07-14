@@ -28,6 +28,8 @@ const data = snapshot.docs
     id: doc.id,
     ...doc.data(),
   }))
+  // eslint-disable-next-line @typescript-eslint/no-explicit-anygit add .
+
   .filter((item: any) => item.trending === true)
   .slice(0, 5) as News[];
 
