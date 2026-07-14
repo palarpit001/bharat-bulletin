@@ -45,9 +45,8 @@ export default function Header() {
   };
 
   return (
-    /* Header background remains premium glassmorphic */
-    <header className="sticky top-0 z-50 bg-white/75 dark:bg-zinc-900/75 text-black dark:text-white backdrop-blur-md border-b border-gray-200/50 dark:border-zinc-800/50 shadow-sm transition-all duration-300">
-      
+    /* Is line ko dhyan se replace karein - isme z-index ko badhakar z-[9999] kiya hai */
+<header className="sticky top-0 z-[9999] bg-white/75 dark:bg-zinc-900/75 text-black dark:text-white backdrop-blur-md border-b border-gray-200/50 dark:border-zinc-800/50 shadow-sm transition-all duration-300">
       <div className="w-full flex items-center justify-between px-4 py-3 md:py-4">
         <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
           <Image
