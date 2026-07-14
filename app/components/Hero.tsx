@@ -1,10 +1,10 @@
 export default function Hero() {
   return (
-    <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 px-4">
+    /* MENU FIX: Yahan 'relative z-0' add kiya hai taaki header menu iske upar dikhe */
+    <section className="relative z-0 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 px-4">
 
       {/* Main News */}
       <div className="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden">
-
         <img
           src="https://picsum.photos/1200/600"
           alt="Breaking News"
@@ -12,7 +12,6 @@ export default function Hero() {
         />
 
         <div className="p-6">
-
           <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm">
             Breaking News
           </span>
@@ -28,14 +27,11 @@ export default function Hero() {
           <button className="mt-6 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
             Read Full Story
           </button>
-
         </div>
-
       </div>
 
       {/* Trending */}
       <div className="bg-white rounded-xl shadow-lg p-6">
-
         <h3 className="text-2xl font-bold mb-5">
           🔥 Trending
         </h3>
@@ -48,7 +44,6 @@ export default function Hero() {
           <li>▶ Technology</li>
           <li>▶ Education</li>
         </ul>
-
       </div>
 
     </section>
