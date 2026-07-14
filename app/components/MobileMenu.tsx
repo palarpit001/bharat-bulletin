@@ -18,17 +18,17 @@ export default function MobileMenu() {
         <Menu size={30} />
       </button>
 
-      {/* Overlay: Menu khulne par background ko dark karne ke liye */}
+      {/* Overlay: Iska z-index bhi bada kar diya hai taaki articles piche dabe rahein */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/60 z-40 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60 z-[9998] transition-opacity duration-300"
           onClick={() => setOpen(false)}
         />
       )}
 
-      {/* Sidebar: Purely solid layout, no transparency or backdrop blur */}
+      {/* Sidebar: z-[9999] lagane se yeh har haal mein screen ke sabse upar rahega */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-72 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 shadow-2xl z-[9999] transform transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -44,7 +44,7 @@ export default function MobileMenu() {
           </button>
         </div>
 
-        {/* Links: Clean visual hierarchy and solid background */}
+        {/* Links */}
         <nav className="flex flex-col p-5 gap-1.5 text-lg font-bold bg-white dark:bg-zinc-950 h-[calc(100%-80px)] overflow-y-auto">
           <Link 
             href="/" 
