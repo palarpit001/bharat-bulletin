@@ -37,10 +37,9 @@ export default function ArticleClient() {
       setArticle(data);
 
       const relatedQuery = query(
-        collection(db, "news"),
-        const [data, setData] = useState<{ id: string; category?: string }>({ id: "" });
-      );
-
+  collection(db, "news"),
+  where("category", "==", (data as any).category)
+);
       const relatedSnap = await getDocs(relatedQuery);
 
       const related = relatedSnap.docs
