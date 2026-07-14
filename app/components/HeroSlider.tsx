@@ -52,7 +52,6 @@ export default function HeroSlider() {
   const article = news[current];
 
   return (
-    /* Humne yahan relative aur z-0 laga diya hai */
     <section className="relative z-0 max-w-7xl mx-auto px-4 mt-8">
       <Link
         href={`/article/${article.slug}`}
@@ -64,41 +63,38 @@ export default function HeroSlider() {
           className="w-full h-[500px] object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
-        {/* Dark overlay with content */}
         <div className="absolute inset-0 bg-black/50 flex items-end">
           <div className="p-8 text-white">
-            <span className="bg-red-600 px-3 py-1 rounded-full text-sm">
+            <span className="bg-red-600 px-3 py-1 rounded-full text-sm font-semibold">
               {article.category}
             </span>
 
-            <h2 className="text-5xl font-bold mt-4">
+            <h2 className="text-3xl md:text-5xl font-bold mt-4 line-clamp-2">
               {article.title}
             </h2>
 
-            <p className="mt-4 text-lg max-w-2xl">
+            <p className="mt-4 text-base md:text-lg max-w-2xl line-clamp-2 opacity-90">
               {article.description}
             </p>
           </div>
         </div>
 
-        {/* Prev Button */}
         <button
           onClick={(e) => {
             e.preventDefault();
             setCurrent((prev) => (prev - 1 + news.length) % news.length);
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-black w-12 h-12 rounded-full text-2xl flex items-center justify-center hover:bg-gray-150 transition"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-black w-10 h-10 md:w-12 md:h-12 rounded-full text-xl md:text-2xl flex items-center justify-center shadow-lg hover:bg-gray-100 transition active:scale-95 z-10"
         >
           ‹
         </button>
 
-        {/* Next Button */}
         <button
           onClick={(e) => {
             e.preventDefault();
             setCurrent((prev) => (prev + 1) % news.length);
           }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black w-12 h-12 rounded-full text-2xl flex items-center justify-center hover:bg-gray-150 transition"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black w-10 h-10 md:w-12 md:h-12 rounded-full text-xl md:text-2xl flex items-center justify-center shadow-lg hover:bg-gray-100 transition active:scale-95 z-10"
         >
           ›
         </button>
