@@ -16,15 +16,21 @@ export default function MobileMenu() {
       {open && (
         <div className="fixed inset-0 z-[999999] flex justify-end">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
-          <div className="relative w-72 h-full bg-white dark:bg-zinc-950 shadow-2xl p-5">
+          <div className="relative w-72 h-full bg-white dark:bg-zinc-950 shadow-2xl p-5 overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold">Menu</h2>
               <button onClick={() => setOpen(false)}><X size={28} /></button>
             </div>
-            <nav className="flex flex-col gap-4">
-              <Link href="/" onClick={() => setOpen(false)}>Home</Link>
-              <Link href="/category/india" onClick={() => setOpen(false)}>India</Link>
-              <Link href="/category/world" onClick={() => setOpen(false)}>World</Link>
+            <nav className="flex flex-col gap-2">
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/" onClick={() => setOpen(false)}>Home</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/india" onClick={() => setOpen(false)}>India</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/world" onClick={() => setOpen(false)}>World</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/politics" onClick={() => setOpen(false)}>Politics</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/business" onClick={() => setOpen(false)}>Business</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/sports" onClick={() => setOpen(false)}>Sports</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/technology" onClick={() => setOpen(false)}>Technology</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/category/education" onClick={() => setOpen(false)}>Education</Link>
+              <Link className="p-3 hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-lg" href="/contact" onClick={() => setOpen(false)}>Contact</Link>
             </nav>
           </div>
         </div>
