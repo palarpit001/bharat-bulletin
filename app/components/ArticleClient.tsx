@@ -59,7 +59,6 @@ export default function ArticleClient() {
     fetchArticle();
   }, [slug]);
 
-  // AI Audio Voice Assistant Hook
   useEffect(() => {
     if (article && typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
@@ -92,7 +91,6 @@ export default function ArticleClient() {
     );
   }
 
-  // Calculate Dynamic reading time logic 
   const calculateReadTime = (text: string) => {
     if (!text) return "1 min read";
     const wordsPerMinute = 200; 
@@ -150,107 +148,108 @@ export default function ArticleClient() {
   const paragraphs = article.content.split("\n\n");
 
   return (
-    <main className="w-full bg-gray-50 dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 py-10 min-h-screen">
+    <main className="w-full bg-gray-50 dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300 py-6 md:py-10 min-h-screen">
       <div className="max-w-5xl mx-auto px-4">
         
-        {/* Category Badge */}
-        <span className="bg-red-600 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-sm inline-block">
+        {/* Responsive Category Badge */}
+        <span className="bg-red-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full font-semibold text-xs md:text-sm shadow-sm inline-block">
           {article.category}
         </span>
 
-        {/* Article Headline */}
-        <h1 className="text-4xl md:text-5xl font-extrabold mt-6 leading-tight text-gray-900 dark:text-white">
+        {/* Article Headline with balanced mobile-friendly font-sizes */}
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mt-4 md:mt-6 leading-tight text-zinc-900 dark:text-white">
           {article.title}
         </h1>
 
-        {/* Dynamic Meta Bar */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center border-b border-gray-200 dark:border-zinc-800 pb-5 mt-6 text-gray-500 dark:text-gray-400">
+        {/* Re-aligned Dynamic Meta Bar for Mobile */}
+        <div className="flex flex-col gap-4 border-b border-gray-200 dark:border-zinc-800 pb-5 mt-5 md:mt-6 text-gray-500 dark:text-gray-400">
           
-          <div className="flex flex-wrap gap-4 items-center text-sm">
+          <div className="flex flex-wrap gap-2 md:gap-4 items-center text-xs md:text-sm">
             <p className="font-medium text-gray-700 dark:text-gray-300">
               ✍️ {article.author}
             </p>
-            <p className="text-gray-400 dark:text-gray-500">|</p>
+            <p className="text-gray-350 dark:text-gray-650">|</p>
             <p>📅 {article.date}</p>
-            <p className="text-gray-400 dark:text-gray-500">|</p>
-            {/* Dynamic Read Time Indicator (Hamesha visible) */}
-            <span className="bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-xs font-semibold flex items-center gap-1">
+            <p className="text-gray-350 dark:text-gray-650">|</p>
+            <span className="bg-gray-100 dark:bg-zinc-800 text-gray-800 dark:text-gray-200 px-2 py-0.5 md:py-1 rounded text-[10px] md:text-xs font-semibold flex items-center gap-1">
               ⏱️ {calculateReadTime(article.content)}
             </span>
           </div>
 
-          {/* Premium Audio Reader Toggle */}
-          <button 
-            onClick={handleAudioPlay}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 font-bold hover:bg-red-200 dark:hover:bg-red-900 transition-all duration-200 text-sm shadow-sm"
-          >
-            {isPlaying ? (
-              <>
-                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
-                Stop Audio News 🛑
-              </>
-            ) : (
-              <>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-4 h-4">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                Listen Audio News 🔊
-              </>
-            )}
-          </button>
+          {/* Fully Responsive Premium Audio Toggle (Wraps neatly) */}
+          <div className="flex">
+            <button 
+              onClick={handleAudioPlay}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 font-bold hover:bg-red-200 dark:hover:bg-red-900 transition-all duration-200 text-xs md:text-sm shadow-sm active:scale-95"
+            >
+              {isPlaying ? (
+                <>
+                  <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+                  Stop Audio News 🛑
+                </>
+              ) : (
+                <>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-3.5 h-3.5 md:w-4 md:h-4">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                  Listen Audio News 🔊
+                </>
+              )}
+            </button>
+          </div>
 
         </div>
 
-        {/* Share Section */}
-        <div className="flex gap-3 flex-wrap mt-8">
+        {/* Share buttons (Compact on Mobile) */}
+        <div className="flex gap-2 md:gap-3 flex-wrap mt-6 md:mt-8">
           <button
             onClick={whatsappShare}
-            className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-medium transition shadow-sm"
+            className="bg-green-600 hover:bg-green-700 text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition shadow-sm"
           >
             WhatsApp
           </button>
 
           <button
             onClick={facebookShare}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition shadow-sm"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition shadow-sm"
           >
             Facebook
           </button>
 
           <button
             onClick={xShare}
-            className="bg-black hover:bg-zinc-900 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-white px-5 py-2.5 rounded-lg font-medium transition shadow-sm"
+            className="bg-black hover:bg-zinc-900 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition shadow-sm"
           >
             X
           </button>
 
           <button
             onClick={copyLink}
-            className="bg-gray-700 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-medium transition shadow-sm"
+            className="bg-gray-700 hover:bg-gray-800 text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition shadow-sm"
           >
             Copy Link
           </button>
         </div>
 
-        {/* Main Post Container */}
-        <article className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800/80 mt-10 p-6 md:p-10 rounded-xl shadow-lg text-lg leading-relaxed text-gray-800 dark:text-gray-200 transition-colors duration-300">
+        {/* Main Article with mobile responsive padding */}
+        <article className="bg-white dark:bg-zinc-900 border border-gray-100 dark:border-zinc-800/80 mt-8 md:mt-10 p-5 md:p-10 rounded-xl shadow-lg text-base md:text-lg leading-relaxed text-gray-800 dark:text-gray-200 transition-colors duration-300">
           
-          <p className="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-8 border-l-4 border-red-600 pl-4">
+          <p className="text-lg md:text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-6 md:mb-8 border-l-4 border-red-600 pl-4 leading-normal">
             {article.description}
           </p>
 
           {paragraphs.map((para: string, index: number) => (
             <div key={index}>
-              <p className="mb-6 whitespace-pre-line text-gray-800 dark:text-gray-200">
+              <p className="mb-5 md:mb-6 whitespace-pre-line text-gray-850 dark:text-gray-150">
                 {para}
               </p>
 
               {index === 0 && (
-                <div className="my-8 overflow-hidden rounded-xl shadow-md group border border-gray-100 dark:border-zinc-800">
+                <div className="my-6 md:my-8 overflow-hidden rounded-xl shadow-md border border-gray-100 dark:border-zinc-800">
                   <img
                     src={article.image}
                     alt={article.title}
-                    className="w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                    className="w-full object-cover transition-transform duration-500"
                   />
                 </div>
               )}
@@ -259,38 +258,38 @@ export default function ArticleClient() {
 
         </article>
 
-        {/* Related News Carousel section */}
-        <section className="mt-16">
+        {/* Related News block */}
+        <section className="mt-12 md:mt-16">
           
-          <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-zinc-900 dark:text-white">
             Related News
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {relatedNews.map((item: any) => (
               <Link
                 key={item.id}
                 href={`/article/${item.slug}`}
-                className="bg-white dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 border border-gray-100 dark:border-zinc-800 group"
+                className="bg-white dark:bg-zinc-900 rounded-xl shadow-md overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-zinc-800 group"
               >
                 <div className="overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-44 sm:h-52 object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
                 <div className="p-4">
-                  <span className="bg-red-600 text-white px-2.5 py-1 rounded text-xs font-semibold inline-block">
+                  <span className="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-semibold inline-block">
                     {item.category}
                   </span>
 
-                  <h3 className="font-bold mt-3 line-clamp-2 text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                  <h3 className="font-bold text-sm md:text-base mt-2 line-clamp-2 text-zinc-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
                     {item.title}
                   </h3>
 
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                  <p className="text-[11px] md:text-sm text-gray-500 dark:text-gray-400 mt-2">
                     {item.date}
                   </p>
                 </div>
