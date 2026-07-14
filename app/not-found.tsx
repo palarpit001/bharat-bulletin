@@ -14,10 +14,10 @@ export default function NotFound() {
           Oops! Page Not Found
         </h2>
 
-        <p className="text-gray-600 mt-4 max-w-xl mx-auto text-lg">
-          The page you are looking for doesn't exist or has been moved.
-          Please return to the homepage.
-        </p>
+       <p className="text-gray-600 mt-4 max-w-xl mx-auto text-lg">
+  The page you are looking for does not exist or has been moved.
+  Please return to the homepage.
+</p>
 
         <Link
           href="/"
