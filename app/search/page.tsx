@@ -7,6 +7,8 @@ import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 
+export const dynamic = 'force-dynamic';
+
 interface News {
   id: string;
   slug: string;
