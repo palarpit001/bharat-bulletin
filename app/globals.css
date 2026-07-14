@@ -1,8 +1,25 @@
 @import "tailwindcss";
 
+/* 1. Default Light Mode variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+/* 2. Jab HTML par 'dark' class aaye (Button click se) YA Mobile system dark ho */
+@variant dark (&:where(.dark, .dark *));
+
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* System dark mode fallback agar user ne manually select na kiya ho */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 @theme inline {
@@ -12,23 +29,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease; /* smooth transition ke liye */
 }
+
+/* Ticker Animations (Jaise thhe waise hi hain) */
 @keyframes ticker {
   0% {
     transform: translateX(100%);
   }
-
   100% {
     transform: translateX(-100%);
   }

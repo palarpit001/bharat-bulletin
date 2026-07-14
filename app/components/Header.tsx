@@ -12,6 +12,7 @@ export default function Header() {
   const [mobileSearch, setMobileSearch] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  // Initialize Theme safely on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -26,14 +27,15 @@ export default function Header() {
   }, []);
 
   const toggleDarkMode = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
+    const nextDarkState = !isDarkMode;
+    setIsDarkMode(nextDarkState);
+
+    if (nextDarkState) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   };
 
@@ -46,8 +48,6 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-lg border-b border-gray-200 dark:border-zinc-800 transition-colors duration-300">
       
-      {/* Time and Live Top Bar Has Been Completely Removed From Here */}
-
       <div className="w-full flex items-center justify-between px-4 py-3 md:py-4">
         <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
           <Image
@@ -70,22 +70,25 @@ export default function Header() {
 
         <DesktopNav />
 
-        <div className="flex items-center gap-2 md:gap-4">
+        {/* Action Panel: Buttons layout fixed for both mobile and desktop */}
+        <div className="flex items-center gap-3 md:gap-4">
           <div className="hidden lg:block">
             <SearchBar />
           </div>
 
+          {/* Toggle button that stays fully interactive on mobiles too */}
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300 transition-colors active:scale-95"
+            className="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300 transition-all duration-200 active:scale-90 touch-manipulation z-50"
+            aria-label="Toggle Dark Mode"
             title="Toggle Theme"
           >
             {isDarkMode ? (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-yellow-500">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5.5 h-5.5 md:w-5 md:h-5 text-yellow-500">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m0 13.5V21M9.75 12h-.75m11.25 0h-.75m-.456-6.33L16.2 6.945M8.1 15.9l-1.33 1.33M16.2 17.055l-1.33-1.33M8.1 8.1l-1.33-1.33M12 7.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9z" />
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-zinc-700">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5.5 h-5.5 md:w-5 md:h-5 text-zinc-700">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
               </svg>
             )}
@@ -93,7 +96,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
-            className="block lg:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-red-600 transition"
+            className="block lg:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-red-600 transition touch-manipulation"
             aria-label="Toggle Search"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
