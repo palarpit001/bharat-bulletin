@@ -15,7 +15,6 @@ export default function Header() {
 
   // 1. Live Time Update and Dark Mode Initialize
   useEffect(() => {
-    // Current Time and Date
     const updateTime = () => {
       const now = new Date();
       const options: Intl.DateTimeFormatOptions = {
@@ -25,18 +24,22 @@ export default function Header() {
         day: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit",
       };
       setCurrentTime(now.toLocaleDateString("en-US", options));
     };
     updateTime();
-    const interval = setInterval(updateTime, 1000);
+    const interval = setInterval(updateTime, 60000); // Update every minute
 
     // Initial Dark Mode Check
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
       setIsDarkMode(true);
       document.documentElement.classList.add("dark");
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
     }
 
     return () => clearInterval(interval);
@@ -72,9 +75,9 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-3">
           <span className="font-medium">Trending:</span>
-          <Link href="/search?q=india" className="hover:text-red-600 transition">#India</Link>
-          <Link href="/search?q=tech" className="hover:text-red-600 transition">#Tech</Link>
-          <Link href="/search?q=world" className="hover:text-red-600 transition">#World</Link>
+          <Link href="/search?q=india" className="hover:text-red-600 dark:hover:text-red-400 transition">#India</Link>
+          <Link href="/search?q=tech" className="hover:text-red-600 dark:hover:text-red-400 transition">#Tech</Link>
+          <Link href="/search?q=world" className="hover:text-red-600 dark:hover:text-red-400 transition">#World</Link>
         </div>
       </div>
 
@@ -92,7 +95,7 @@ export default function Header() {
             className="rounded-full"
           />
           <div>
-            <h1 className="text-2xl font-bold whitespace-nowrap">
+            <h1 className="text-2xl font-bold whitespace-nowrap text-zinc-900 dark:text-white">
               Bharat Bulletin
             </h1>
             <p className="text-xs text-gray-500 dark:text-gray-400">
