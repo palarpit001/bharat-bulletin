@@ -45,7 +45,8 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-[100] isolate bg-white/75 dark:bg-zinc-900/75 text-black dark:text-white backdrop-blur-md border-b border-gray-200/50 dark:border-zinc-800/50 shadow-sm transition-all duration-300">
+    // FIX: 'isolate' hataya aur 'z-[60]' kiya taaki menu stack context na bane
+    <header className="sticky top-0 z-[60] bg-white/75 dark:bg-zinc-900/75 text-black dark:text-white backdrop-blur-md border-b border-gray-200/50 dark:border-zinc-800/50 shadow-sm transition-all duration-300">
       <div className="w-full flex items-center justify-between px-4 py-3 md:py-4">
         <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
           <Image
@@ -75,7 +76,7 @@ export default function Header() {
 
           <button
             onClick={toggleDarkMode}
-            className="p-2.5 rounded-full hover:bg-gray-100/80 dark:hover:bg-zinc-800/80 text-gray-600 dark:text-gray-300 transition-all duration-200 active:scale-90 touch-manipulation z-50"
+            className="p-2.5 rounded-full hover:bg-gray-100/80 dark:hover:bg-zinc-800/80 text-gray-600 dark:text-gray-300 transition-all duration-200 active:scale-90 touch-manipulation"
             aria-label="Toggle Dark Mode"
             title="Toggle Theme"
           >
