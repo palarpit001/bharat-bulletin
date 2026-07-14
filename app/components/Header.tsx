@@ -11,24 +11,8 @@ export default function Header() {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [mobileSearch, setMobileSearch] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        weekday: "short",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      };
-      setCurrentTime(now.toLocaleDateString("en-US", options));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 60000);
-
     const savedTheme = localStorage.getItem("theme");
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
@@ -39,8 +23,6 @@ export default function Header() {
       setIsDarkMode(false);
       document.documentElement.classList.remove("dark");
     }
-
-    return () => clearInterval(interval);
   }, []);
 
   const toggleDarkMode = () => {
@@ -63,18 +45,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-lg border-b border-gray-200 dark:border-zinc-800 transition-colors duration-300">
-      {/* Dynamic Time Bar - Mobile standard responsive update */}
-      <div className="flex justify-between items-center bg-zinc-100 dark:bg-zinc-950 px-4 md:px-6 py-2 text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 border-b border-gray-200 dark:border-zinc-800 transition-colors duration-300">
-        <div className="flex items-center gap-2">
-          <span className="font-semibold text-red-600 dark:text-red-500">LIVE:</span>
-          <span>{currentTime || "Loading Date & Time..."}</span>
-        </div>
-        <div className="hidden sm:flex items-center gap-3">
-          <span className="font-medium">Trending:</span>
-          <Link href="/search?q=india" className="hover:text-red-600 dark:hover:text-red-400 transition">#India</Link>
-          <Link href="/search?q=tech" className="hover:text-red-600 dark:hover:text-red-400 transition">#Tech</Link>
-        </div>
-      </div>
+      
+      {/* Time and Live Top Bar Has Been Completely Removed From Here */}
 
       <div className="w-full flex items-center justify-between px-4 py-3 md:py-4">
         <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
