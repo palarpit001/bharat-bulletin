@@ -12,7 +12,6 @@ export default function Header() {
   const [mobileSearch, setMobileSearch] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Initialize Theme safely on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -46,7 +45,8 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-lg border-b border-gray-200 dark:border-zinc-800 transition-colors duration-300">
+    /* Premium Glassmorphic Header config (bg-white/75, dark:bg-zinc-900/75 with backdrop-blur-md) */
+    <header className="sticky top-0 z-50 bg-white/75 dark:bg-zinc-900/75 text-black dark:text-white backdrop-blur-md border-b border-gray-200/50 dark:border-zinc-800/50 shadow-sm transition-all duration-300">
       
       <div className="w-full flex items-center justify-between px-4 py-3 md:py-4">
         <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
@@ -56,13 +56,13 @@ export default function Header() {
             width={40}
             height={40}
             priority
-            className="rounded-full md:w-[50px] md:h-[50px]"
+            className="rounded-full md:w-[50px] md:h-[50px] ring-2 ring-red-500/10 dark:ring-red-500/20"
           />
           <div>
-            <h1 className="text-lg md:text-2xl font-bold whitespace-nowrap text-zinc-900 dark:text-white">
+            <h1 className="text-lg md:text-2xl font-extrabold tracking-tight whitespace-nowrap text-zinc-900 dark:text-white">
               Bharat Bulletin
             </h1>
-            <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-[10px] md:text-xs text-gray-550 dark:text-gray-400 font-medium">
               Fast • Trusted • Unbiased
             </p>
           </div>
@@ -70,16 +70,14 @@ export default function Header() {
 
         <DesktopNav />
 
-        {/* Action Panel: Buttons layout fixed for both mobile and desktop */}
         <div className="flex items-center gap-3 md:gap-4">
           <div className="hidden lg:block">
             <SearchBar />
           </div>
 
-          {/* Toggle button that stays fully interactive on mobiles too */}
           <button
             onClick={toggleDarkMode}
-            className="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 text-gray-600 dark:text-gray-300 transition-all duration-200 active:scale-90 touch-manipulation z-50"
+            className="p-2.5 rounded-full hover:bg-gray-100/80 dark:hover:bg-zinc-800/80 text-gray-600 dark:text-gray-300 transition-all duration-200 active:scale-90 touch-manipulation z-50"
             aria-label="Toggle Dark Mode"
             title="Toggle Theme"
           >
@@ -109,17 +107,17 @@ export default function Header() {
       </div>
 
       {isMobileSearchOpen && (
-        <div className="block lg:hidden px-4 pb-4 pt-1 border-t border-gray-100 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-950 transition-colors">
+        <div className="block lg:hidden px-4 pb-4 pt-1 border-t border-gray-150/50 dark:border-zinc-800/50 bg-gray-50/90 dark:bg-zinc-950/90 transition-colors">
           <form onSubmit={handleMobileSearch} className="flex items-center w-full">
             <input
               type="text"
               placeholder="Search News..."
               value={mobileSearch}
               onChange={(e) => setMobileSearch(e.target.value)}
-              className="px-3 py-2 w-full border border-gray-300 dark:border-zinc-700 rounded-l-lg outline-none focus:border-red-600 text-black dark:text-white bg-white dark:bg-zinc-800 text-sm"
+              className="px-3 py-2 w-full border border-gray-300/60 dark:border-zinc-700/60 rounded-l-lg outline-none focus:border-red-600 text-black dark:text-white bg-white/80 dark:bg-zinc-800/80 text-sm"
               autoFocus
             />
-            <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-r-lg font-bold hover:bg-red-700 transition text-sm">
+            <button type="submit" className="bg-red-600/90 text-white px-4 py-2 rounded-r-lg font-bold hover:bg-red-700 transition text-sm">
               Search
             </button>
           </form>
