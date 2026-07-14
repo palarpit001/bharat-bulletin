@@ -9,9 +9,9 @@ export default function ContactPage() {
           </h1>
 
           <p className="mt-4 text-lg text-gray-600">
-            We'd love to hear from you. Reach out for news tips,
-            feedback or business enquiries.
-          </p>
+  We would love to hear from you. Reach out for news tips,
+  feedback or business enquiries.
+</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">
