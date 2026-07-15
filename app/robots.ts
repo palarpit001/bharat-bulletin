@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://bharatbulletin.vercel.app/sitemap.xml",
+    sitemap: "https://bharat-bulletin-lilac.vercel.app/sitemap.xml",
   };
 }
