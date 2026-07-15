@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bharatbulletin.vercel.app"),
+  metadataBase: new URL("https://bharat-bulletin-lilac.vercel.app"),
 
   title: {
     default: "Bharat Bulletin | Latest India & World News",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Bharat Bulletin | Latest India & World News",
     description:
       "Latest breaking news from India and around the world.",
-    url: "https://bharatbulletin.vercel.app",
+    url: "https://bharat-bulletin-lilac.vercel.app",
     siteName: "Bharat Bulletin",
     locale: "en_IN",
     type: "website",
@@ -67,14 +67,17 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Bharat Bulletin",
-    description:
-      "Latest India and World News",
+    description: "Latest India and World News",
     images: ["/images/logo.png"],
   },
 
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
+  },
+
+  verification: {
+    google: "kqCLf436UBDYh-8G4kW7axly4YK9DgrtGttpFjnzG78",
   },
 };
 
